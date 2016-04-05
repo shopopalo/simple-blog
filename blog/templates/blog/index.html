@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Main Page
+{% endblock %}
+
+
+{% block content %}
+    
+    <div class="row">
+        <article class="col-sm-12 col-md-8 col-lg-9">
+            {% for post in my_posts %}
+                <div class="post z-depth-1 hoverable">
+                    <div class="post-info">
+                        <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+                        <p align="justify" class="post-date-author">Posted on {{ post.created|date }} by <b>{{ post.author }}</b></p>
+                        <a href="{{ post.get_absolute_url }}"><p class="descr_image"><img src="{{ post.description_image }}" class="img-responsive"/></p></a>
+                        <p align="justify">{{ post.description }}</p>
+                        <a class="waves-effect waves-light btn" href="{{ post.get_absolute_url }}">Read more</a>
+                    </div><!-- post-info -->
+                </div><!-- post z-depth-1 hoverable -->
+                {% empty %}
+                <p>Статей не обнаружено :(</p>
+            {% endfor %}
+
+            {% if paginator.num_pages > 1 %}
+                <div class="paginator" align="center">
+                    <nav>
+
+                      <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li><a href="{% url 'pages' page_obj.previous_page_number %}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        {% else %}
+                            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        {% endif %}
+
+                        <li><a href="#">{{ page_obj.number }}</a></li>
+
+                        {% if page_obj.has_next %}
+                            <li><a href="{% url 'pages' page_obj.next_page_number %}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        {% else %}
+                            <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        {% endif %}
+
+                      </ul><!-- pagination -->
+                    </nav>
+                </div><!-- paginator -->
+            {% endif %}
+
+        </article>
+        
+        <!-- row закрывается в base.html-->
+
+
+
+
+{% endblock %}

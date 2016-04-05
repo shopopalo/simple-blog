@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        {% include 'stylesheets.html' %}
+    </head>
+
+    <body>
+        <header>
+            <nav class="nav">
+                <div class="nav-wrapper container">
+                    <a href="/" class="brand-logo brand-logo-small black-text">Phonxis</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{% url 'index_list' %}">Main</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                    </ul>
+                    <ul id="menu" class="side-nav" style="display: none;">
+                        <li><a href="{% url 'index_list' %}">Main</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                    </ul>
+                    <div class="menu-trigger hide-on-large-only" id="trigger" data-activates="mobile-demo"><i class="material-icons">menu</i></div>
+                </div>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="container cont">
+                {% block content %}
+
+                {% endblock %}
+
+                <!-- блок aside -->
+                <aside class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="additional z-depth-1 hoverable post-info">
+                            <div class="row">
+
+                                    <div class="col-sm-6 col-md-12">
+                                        <form action="/search" method="get">
+                                            <input type="text" name="q" placeholder="Type text for search and Enter">
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-6 col-md-12">
+                                        Categories:<br>
+                                        {% for tag in tags %}
+                                            <div class="chip"><a href="{% url 'filter_posts' tag.name %}"><i class="fa fa-hashtag"></i>{{ tag.name }}</a></div><br>
+                                        {% endfor %}
+                                    </div>
+                            </div><!-- row -->
+
+                    </div><!-- additional z-depth-1 hoverable post-info -->
+                </aside>
+                </div><!-- row -->
+                <!-- блок aside -->
+
+            </div>
+        </main>
+
+        <footer class="page-footer">
+              <div class="footer-copyright">
+                <div class="container">
+                © 2016 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+              </div>
+        </footer>
+
+        {% include 'javascripts.html' %}
+
+    </body>
+</html>

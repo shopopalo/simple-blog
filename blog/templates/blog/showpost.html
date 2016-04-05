@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load markdown_deux_tags %}
+
+{% block title %}
+{{ object.title|title }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <article class="col-sm-12 col-md-8 col-lg-9">
+        <div class="post z-depth-1">
+                <div class="post-info content-text">
+                    <h4>{{ post.title }}</h4>
+                    <p class="post-date-author">Скопійовано {{ post.created|date }} <a href="{{ post.original_link }}">звідси</a></p>
+                    <p>{{ post.description }}</p>
+                    {{ post.content|markdown }}
+                    {% for tag in post.tags.all %}
+                        <div class="chip"><a href="{% url 'filter_posts' tag %}"><i class="fa fa-hashtag"></i>{{ tag }}</a></div>
+                    {% endfor %}
+                </div><!-- post-info content-text -->
+        </div><!-- post z-depth-1 -->
+    </article>
+
+    <!-- row закрывается в base.html-->
+
+{% endblock %}

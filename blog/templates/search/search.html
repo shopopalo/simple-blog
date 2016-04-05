@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+<div class="row">
+        <article class="col-sm-12 col-md-8 col-lg-9">
+            <form action="/search" method="get">
+                <input type="text" name="q" placeholder="Type text for search and Enter">
+                <!-- <input type="submit" value="Search"> -->
+
+                {% if query %}
+                    <h3>Results</h3>
+
+                    
+
+                    {% for result in page.object_list %}
+                        <div class="post z-depth-1 hoverable">
+                            <div class="post-info">
+                                <h4><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></h4>
+                                <p align="justify" class="post-date-author">Posted on {{ result.object.created|date }} by <b>{{ result.object.author }}</b></p>
+                                <a href="{{ result.object.get_absolute_url }}"><p class="descr_image"><img src="{{ result.object.description_image }}" class="img-responsive"/></p></a>
+                                <p align="justify">{{ result.object.description }}</p>
+                                <a class="waves-effect waves-light btn" href="{{ result.object.get_absolute_url }}">Read more</a>
+                            </div><!-- post-info -->
+                        </div><!-- post z-depth-1 hoverable -->
+                    {% empty %}
+                        <p>No results found.</p>
+                    {% endfor %}
+
+                    {% if page.has_previous or page.has_next %}
+                        <div>
+                            {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                            |
+                            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    {# Show some example queries to run, maybe query syntax, something else? #}
+                {% endif %}
+            </form>
+        </article>
+    <!-- row закрывается в base.html-->
+
+
+{% endblock %}

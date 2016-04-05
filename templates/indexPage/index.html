@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Main</title>
+
+    <!-- CSS  -->
+    <link href="{% static 'indexPage/css/plugin-min.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'indexPage/css/custom-min.css' %}" type="text/css" rel="stylesheet" >
+</head>
+<body id="top" class="scrollspy">
+
+<!--Navigation-->
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+            <a href="#" id="logo-container" class="brand-logo">Phonxis</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{% url 'blog:index_list' %}">Blog</a></li>
+                    <li><a href="{% url 'blog:about' %}">About</a></li>
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="{% url 'blog:index_list' %}">Blog</a></li>
+                    <li><a href="{% url 'blog:about' %}">About</a></li>
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!--Hero-->
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <h1 class="text_h center header cd-headline letters type">
+            <span>Я love</span> 
+            <span class="cd-words-wrapper waiting">
+                <b class="is-visible">Python</b>
+                <b>Django</b>
+                <b>JS</b>
+            </span>
+        </h1>
+    </div>
+</div>
+
+    <!--  Scripts-->
+    <script src="{% static 'indexPage/js/plugin-min.js' %}"></script>
+    <script src="{% static 'indexPage/js/custom-min.js' %}"></script>
+
+    </body>
+</html>
