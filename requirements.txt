@@ -9,7 +9,7 @@ elasticsearch==2.2.0
 gunicorn==19.4.5
 Markdown==2.6.5
 markdown2==2.3.0
-Pillow==3.0.0
+Pillow==9.0.1
 psycopg2==2.5.4
 python-slugify==1.1.4
 Unidecode==0.4.18
